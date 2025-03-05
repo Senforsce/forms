@@ -1,0 +1,23 @@
+package textarea
+
+import "github.com/senforsce/tndr0cean/router"
+
+type ComponentTextAreaConfig struct {
+	Placeholder string
+	Name string
+	Id string
+    // Lines int
+    // Cols int
+}
+
+t1 Component(c *router.Context, co ComponentTextAreaConfig, errs map[string]string) {
+	<div>
+        if errs[co.Name] != "" {
+            <p class="error">{ errs[co.Name] }</p>
+        }
+		<textarea data-tndr-class=§form:T1TextArea! 
+			id={co.Id}
+			placeholder={ co.Placeholder }
+			name={ co.Name }></textarea>
+	</div>
+}

@@ -1,0 +1,31 @@
+package formselect
+
+import "github.com/senforsce/tndr0cean/router"
+
+
+t1 Option(c *router.Context, oc ComponentOptionConfig) {
+    <option name={oc.Name}>
+        { oc.Value }
+    </option>
+}
+
+t1 OptionList(c *router.Context, listOptions []ComponentOptionConfig) {
+    for _, o := range listOptions {
+        @Option(c, o)
+    }
+}
+
+t1 Component(c *router.Context, co ComponentSelectConfig, errs map[string]string) {
+    <div>
+        if errs[co.Name] != "" {
+            <p class="error">{ errs[co.Name] }</p>
+        }
+        <select data-tndr-class=§form:T1Select! 
+            id={co.Id}
+            type={ co.InputType }
+            placeholder={ co.Placeholder }
+            name={ co.Name }>
+        @OptionList(c, co.OptionList )
+        </select>
+    </div>
+}

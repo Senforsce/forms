@@ -1,0 +1,30 @@
+package contact
+
+import (
+    "github.com/senforsce/tndr0cean/router"
+
+    "github.com/senforsce/forms/co/input"
+    "github.com/senforsce/forms/co/textarea"
+
+)
+
+
+type FormOptions struct {
+    NameOptions input.ComponentInputConfig
+    EmailOptions input.ComponentInputConfig
+    MessageOptions textarea.ComponentTextAreaConfig
+    Action t1.SafeURL
+    Method string
+}
+
+t1 Form(c *router.Context, fo FormOptions, errs map[string]string) {
+    <form action={fo.Action} method={fo.Method}>
+        @input.Component(c, fo.NameOptions, errs)
+        @input.Component(c, fo.EmailOptions, errs)
+        @textarea.Component(c, fo.MessageOptions, errs)
+        <div data-tndr-class=§cls:FormOptions!>
+            <button type="submit" disabled?={ len(errs) > 0 }>§i18n:Save!</button>
+            <button type="cancel">§i18n:Cancel!</button>
+        </div>
+    </form>
+}

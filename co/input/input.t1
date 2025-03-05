@@ -1,0 +1,21 @@
+package input
+
+import "github.com/senforsce/tndr0cean/router"
+
+type ComponentInputConfig struct {
+	InputType string
+	Placeholder string
+	Name string
+	Id string
+}
+
+t1 Component(c *router.Context, co ComponentInputConfig, errs map[string]string) {
+	<div>
+	<input data-tndr-class=§form:T1Input! 
+		id={co.Id}
+		type={ co.InputType }
+		placeholder={ co.Placeholder }
+		name={ co.Name } />
+	</div>
+	
+}
